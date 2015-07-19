@@ -28,7 +28,8 @@ public class DriveTrain implements Runnable {
 	private volatile double rotationCommand = 0; // 0 for unmoving, 1 for full clockwise, -1 counterclockwise
 
 	// Joysticks
-	private final Joystick driveJoystick;
+	private final Joystick joystickLeft;
+    private final Joystick joystickRight;
 	private volatile boolean joystickStateCommand = true; // false to disable joysticks
 
 	// Deadzone and smoothing
@@ -47,7 +48,8 @@ public class DriveTrain implements Runnable {
 		// Instantiate
 
 		// Joysticks
-			driveJoystick = new Joystick(0);
+        joystickLeft = new Joystick(0);
+        joystickRight = new Joystick(1);
 		//	Joystick turnJoystick = new Joystick(0);
 
 
@@ -60,11 +62,6 @@ public class DriveTrain implements Runnable {
 
 	public void run() {
         while (true) {
-        	if(joystickStateCommand) {
-            	xCommand = driveJoystick.getAxis(Joystick.AxisType.kX);
-            	yCommand = driveJoystick.getAxis(Joystick.AxisType.kY);
-            	rotationCommand = (driveJoystick.getRawButton(7) ? 1 : 0) * -.3 + (driveJoystick.getRawButton(8) ? 1 : 0) * .3;
-        	}
             if (driverStation.isEnabled()) {
                 /*=================================================================
                 -Makes sure joystick will not work at �P% throttle, P is declared above
@@ -109,7 +106,7 @@ public class DriveTrain implements Runnable {
                 }
 
 
-                moveDriveTrain(xCommand, yCommand, rotationCommand, 0);
+                moveDriveTrain(joystickLeft, joystickRight);
             }
             driveToDashboard();
             Timer.delay(.05); //100ms delay
@@ -129,12 +126,9 @@ public class DriveTrain implements Runnable {
 	}
 
 
-    public void moveDriveTrain(double x, double y, double rotation){
-        drive.mecanumDrive_Cartesian(x, y, rotation, 0);
-    }
 
-    public void moveDriveTrain(double x, double y, double rotation, double gyro){
-        drive.tankDrive(x, y);
+    public void moveDriveTrain(GenericHID left, GenericHID right){
+        drive.tankDrive(left, right);
     }
 
 	private void driveToDashboard() {
