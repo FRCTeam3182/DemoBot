@@ -36,8 +36,6 @@ public class Robot3182 extends IterativeRobot {
         driveTrainVar = new DriveTrain();
         new Thread(driveTrainVar, "DriveTrain").start();
 
-
-
         //arduinoLightsVar.setLightSequence(LightsEnum.RAINBOW);
 
     }

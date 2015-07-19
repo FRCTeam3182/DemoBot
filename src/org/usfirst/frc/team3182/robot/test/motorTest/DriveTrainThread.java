@@ -25,15 +25,20 @@ public class DriveTrainThread implements Runnable {
     public void run() {
         if (joystick.getRawButton(1)){
             talons.get(0).set(0.5);
+            talons.get(1).set(0.5);
         }
         else if (joystick.getRawButton(2)){
             talons.get(0).set(-0.5);
+            talons.get(1).set(-0.5);
         }
         else if (joystick.getRawButton(3)){
-            talons.get(1).set(0.5);
+            talons.get(2).set(0.5);
+            talons.get(3).set(0.5);
+
         }
         else if (joystick.getRawButton(4)){
-            talons.get(1).set(-0.5);
+            talons.get(2).set(-0.5);
+            talons.get(3).set(-0.5);
         }
         else if (joystick.getRawButton(5)){
             talons.get(2).set(0.5);
