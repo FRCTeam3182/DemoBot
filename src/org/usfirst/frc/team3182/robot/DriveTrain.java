@@ -134,7 +134,7 @@ public class DriveTrain implements Runnable {
     }
 
     public void moveDriveTrain(double x, double y, double rotation, double gyro){
-        drive.mecanumDrive_Cartesian(x, y, rotation, gyro);
+        drive.tankDrive(x, y);
     }
 
 	private void driveToDashboard() {
