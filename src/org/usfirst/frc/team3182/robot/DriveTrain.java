@@ -56,10 +56,6 @@ public class DriveTrain implements Runnable {
         drive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         drive.setSafetyEnabled(false);
 
-        encoders.add(new Encoder(0, 1));
-        encoders.add(new Encoder(2, 3));
-        encoders.add(new Encoder(4, 5));
-        encoders.add(new Encoder(6, 7)); 
 	}
 
 	public void run() {

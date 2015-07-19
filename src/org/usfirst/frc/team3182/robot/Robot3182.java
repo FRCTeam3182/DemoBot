@@ -15,8 +15,6 @@ public class Robot3182 extends IterativeRobot {
     //Declaring thread variables
     private static DriveTrain driveTrainVar;
 
-    private ArduinoLights arduinoLightsVar;
-    private static Lifter lifterVar;
 
     //Declaring dashboard variable
     public static SendableChooser table = new SendableChooser();
@@ -37,8 +35,6 @@ public class Robot3182 extends IterativeRobot {
        // new Thread(arduinoLightsVar, "ArduinoLights").start();
         driveTrainVar = new DriveTrain();
         new Thread(driveTrainVar, "DriveTrain").start();
-        lifterVar = new Lifter();
-        new Thread(lifterVar, "Lifter").start();
 
 
 
@@ -89,21 +85,13 @@ public class Robot3182 extends IterativeRobot {
     @Override
     public void testInit() {
 
-        test = new MotorTest(driveTrainVar.getJoystick(), lifterVar.getJoystick());
+        test = new MotorTest(driveTrainVar.getJoystick());
         test.initiateTest();
     }
 
 
     public static DriveTrain getDriveTrain() {
         return driveTrainVar;
-    }
-
-    public static Lifter getLifter() {
-        return lifterVar;
-    }
-
-    public ArduinoLights getArduinoLights() {
-        return arduinoLightsVar;
     }
 
 
